@@ -1,0 +1,56 @@
+<form #stdForm="ngForm" (ngSubmit)="onStdAdd()">
+  <div class="card">
+     <div class="card-header text-center">
+         <h3 class="m-0">ADD STUDENT</h3>
+     </div>
+     <div class="card-body">
+         <div class="form-group">
+           <label for="fname">First Name*</label>
+           <input type="text" #fname="ngModel" ngModel name="fname" required class="form-control"  pattern="[a-zA-Z]+">
+            
+           <strong class="text-danger" *ngIf="fname.touched && fname.hasError('required') ">
+            Username is a required field
+           </strong>
+           
+           <strong class="text-danger" *ngIf="fname.dirty && fname.hasError('pattern')">
+               It must contain only uppercase and lowercase letter
+           </strong>
+
+         </div>
+         <div class="form-group">
+            <label for="fname">Last Name*</label>
+            <input type="text" #lname="ngModel" ngModel name="lname" required class="form-control" pattern="[a-zA-Z]+">
+            <strong class="text-danger" *ngIf="lname.touched && lname.hasError('required') ">
+              Username is a required field
+             </strong>
+             
+             <strong class="text-danger" *ngIf="lname.dirty && lname.hasError('pattern')">
+                 It must contain only uppercase and lowercase letter
+             </strong>
+          </div>
+          <div class="form-group">
+            <label for="fname">Email*</label>
+            <input type="email" #email="ngModel" ngModel name="email" required class="form-control"  pattern="[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}">
+            <strong class="text-danger" *ngIf="email.touched && email.hasError('required')">
+              Email is required field
+          </strong>
+          
+          <strong class="text-danger" *ngIf="email.dirty && email.hasError('pattern')">
+              Invalid emailId
+          </strong>
+          </div>
+          <div class="form-group">
+            <label for="fname">Contact*</label>
+            <input type="text" #contact="ngModel"  maxlength="10"  ngModel name="contact" required class="form-control">
+            <strong class="text-danger" *ngIf="contact.dirty && contact.hasError('maxlength')">
+              maxlength of username should be 10
+          </strong>
+          </div>
+     </div>
+     <div class="card-footer text-right">
+        <button 
+        [disabled]="stdForm.invalid"
+         mat-raised-button color="primary">Add Todos</button>
+     </div>
+  </div>
+</form>

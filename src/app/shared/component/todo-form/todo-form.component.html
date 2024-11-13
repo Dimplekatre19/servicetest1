@@ -1,0 +1,23 @@
+<form #todoForm="ngForm" (ngSubmit)="onTodoAdd()">
+<div class="card">
+    <div class="card-header text-center">
+      <h3 class="m-0">ADD TODOS</h3>
+    </div>
+  <div class="card-body">
+       <div class="form-group">
+           <label for="todoItem">Todo Item*</label>
+           <input type="text" #todoItem="ngModel" ngModel required name="todoItem" class="form-control" pattern="[a-zA-Z]+">
+           <strong class="text-danger" *ngIf="todoItem.touched && todoItem.hasError('required') ">
+               Username is a required field
+              </strong>
+              
+              <strong class="text-danger" *ngIf="todoItem.dirty && todoItem.hasError('pattern')">
+                  It must contain only uppercase and lowercase letter
+              </strong>
+          </div>
+   </div>
+   <div class=" card-footer text-right">
+        <button [disabled]="todoForm.invalid" mat-raised-button color="primary">Add Todos</button>
+   </div>
+</div>
+</form>
